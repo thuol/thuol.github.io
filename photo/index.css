@@ -1,0 +1,155 @@
+#sidebar, .article-meta, .article-footer {
+    display: none;
+}
+
+#logo-wrap, #subtitle-wrap {
+    /*display: none;*/
+}
+#header-title #logo-wrap a{
+    font-size: 1.5em;
+}
+#header-title #subtitle-wrap a{
+    font-size: 1.0em;
+}
+#logo-wrap{
+    text-align: right;
+}
+#subtitle-wrap{
+    margin: 0;
+    position: relative;
+    /*text-align: center;*/
+
+    top: -25px;
+}
+
+
+#header {
+    height: 60px !important;
+    border-bottom: 0px;
+}
+#footer{
+    border-top: 0px;
+}
+
+.outer {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+}
+
+#main {
+    width: 100% !important;
+    margin: 0px;
+    background: #000000;
+    border: 0px;
+}
+
+#page- {
+    margin: 20px 0;
+}
+
+/*摄影*/
+#photo {
+    background: #000000;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /*flex-wrap:wrap;*/
+    /*justify-content:space-around;*/
+}
+
+.pic_li {
+    padding: 0;
+    margin: 0px 0;
+    list-style: none;
+    margin: 8px;
+
+    width: 320px;
+    height: 240px;
+    background: #ccc;
+
+}
+.pic_li,#is_load:hover{
+    cursor:pointer;
+}
+
+
+/*使图片在浏览器中居中显示*/
+.bigImg {
+    position: absolute;
+    /*width: 1366px;*/
+    /*height: auto;*/
+    /*width: auto;*/
+    /*height: 100%;*/
+    max-width: 100%;
+    max-height: 100%;
+    top: 50%;
+    left: 50%;
+    /*图片向左移动自身宽度的50%, 向上移动自身高度的50%。*/
+    transform: translate(-50%, -50%);
+}
+
+/*遮罩层*/
+.opacityBottom {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: rgba(0, 0, 0);
+    z-index: 1000;
+    top: 0;
+    left: 0;
+}
+
+.article-entry {
+    border: 0px;
+    padding: 0 0px;
+}
+
+.article-inner {
+    box-shadow: none;
+    padding: 0;
+}
+
+.pic_li, .article-inner {
+    /*border: 1px #ffffff solid;*/
+    border: 0px;
+}
+
+.pic_li {
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    /*background-size: 320px 240px;*/
+}
+
+/*照片描述*/
+.describe {
+    color: #F2F6FC;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: left;
+    padding: 15px;
+    position: relative;
+    top: 140px;
+    /*padding-left: 230px;*/
+    letter-spacing: 1px;
+    font-weight: lighter;
+}
+
+.describe .title {
+    font-size: 16px;
+    line-height: 24px;
+    /*display: block;*/
+    /*margin-bottom: 3px;*/
+}
+.load{
+    background: #000;
+    color: #606266;
+    text-align: center;
+    padding-top: 20px;
+}
+.describe:hover{
+    background: rgba(0,0,0,0.6);
+}

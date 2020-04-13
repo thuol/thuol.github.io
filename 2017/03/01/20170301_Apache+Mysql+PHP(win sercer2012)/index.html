@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Apache+Mysql+PHP(win sercer2012) | 00天火00</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="referrer" content="no-referrer"/>
+
+  <meta name="description" content="说明亲测原稿。以  D:\wamp  目录为例（实际目录可自行更改） 准备软件包下载地址  Apache官网:https:&#x2F;&#x2F;httpd.apache.org&#x2F;Mysql官网：https:&#x2F;&#x2F;www.mysql.com&#x2F;PHP官网：http:&#x2F;&#x2F;www.php.net&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Apache+Mysql+PHP(win sercer2012)">
+<meta property="og:url" content="https://blog.thuol.com/2017/03/01/20170301_Apache+Mysql+PHP(win%20sercer2012)/index.html">
+<meta property="og:site_name" content="00天火00">
+<meta property="og:description" content="说明亲测原稿。以  D:\wamp  目录为例（实际目录可自行更改） 准备软件包下载地址  Apache官网:https:&#x2F;&#x2F;httpd.apache.org&#x2F;Mysql官网：https:&#x2F;&#x2F;www.mysql.com&#x2F;PHP官网：http:&#x2F;&#x2F;www.php.net&#x2F;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-53f2f46c684a7d6d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-492d7cafc99e4bc3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-ce00ea8174ed6847.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-69cf5f1ef66ea975.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-dd45942444e75e27.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-4bf088d4ab245ebe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-87452bd73a7ef9e0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-58f09411600acde0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-bcbbb2989fe5a5e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-673162c5f00cf3f6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-dc2b2ce9146449df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-b685970ed63dd174.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-d384cc4bf813ec36.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-1b01e55245c22dbe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-26ef216e91241eee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-0a257e62125e007e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-414ee9eaa7a8b074.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-e16cc5edaaa055d1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-9a876439b6b23322.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-e17183d60d1c5a02.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-ab29c9b0f792e560.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="article:published_time" content="2017-03-01T11:52:00.000Z">
+<meta property="article:modified_time" content="2020-04-13T14:51:42.241Z">
+<meta property="article:author" content="00天火00">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/4830242-53f2f46c684a7d6d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+  <script async src="/busuanzi.pure.mini.js?123"></script>
+  <script async src="/thuol.js?12"></script>
+  <link href="/thuol.css" rel="stylesheet">
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">00天火00</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">人生不相见,动如参与商</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">主页</a>
+        
+          <a class="main-nav-link" href="/archives">文章</a>
+        
+          <a class="main-nav-link" href="/explain">说明</a>
+        
+          <a class="main-nav-link" href="/photo">摄影</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.thuol.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-20170301_Apache+Mysql+PHP(win sercer2012)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+
+    
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+
+<a href="/2017/03/01/20170301_Apache+Mysql+PHP(win%20sercer2012)/" class="article-date">
+  <time datetime="2017-03-01T11:52:00.000Z" itemprop="datePublished">2017-03-01</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Apache+Mysql+PHP(win sercer2012)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>亲测原稿。以  <code>D:\wamp</code>  目录为例<em>（实际目录可自行更改）</em></p>
+<h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><p>软件包下载地址</p>
+<blockquote>
+<p>Apache官网:<a href="https://httpd.apache.org/" target="_blank" rel="noopener">https://httpd.apache.org/</a><br>Mysql官网：<a href="https://www.mysql.com/" target="_blank" rel="noopener">https://www.mysql.com/</a><br>PHP官网：<a href="http://www.php.net/" target="_blank" rel="noopener">http://www.php.net/</a></p>
+</blockquote>
+<a id="more"></a>
+<p>本教程使用软件</p>
+<blockquote>
+<p>httpd-2.4.25-x64-vc11-r1.zip<br>  mysql-5.7.16-winx64.zip<br>  php-5.6.30-Win32-VC11-x64.zip</p>
+</blockquote>
+<p>php版本说明</p>
+<blockquote>
+<p>non-thread-safe 非线程安全 与IIS 搭配环境<br>thread-safe 线程安全与apache 搭配的环境<br>php还有 VC6 VC9版本 区分VC6和VC9一个支持apache一个支持IIS<br>VC9 用在apache上也没问题<br>如果是以FastCGI方式（搭配IIS、nginx）来执行PHP ，都建议下载、执行 non-thread safe 版本的 PHP</p>
+</blockquote>
+<p>在D盘建立wamp目录并在wamp目录下建立Apache24,mysql,php目录，将软件解压到对应目录下。<em>（安装好之后D:\wamp\Apache24\htdocs为代码目录）</em><br><img src="http://upload-images.jianshu.io/upload_images/4830242-53f2f46c684a7d6d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h1 id="安装Apache"><a href="#安装Apache" class="headerlink" title="安装Apache"></a>安装Apache</h1><ol>
+<li>修改配置路径，进入D:\wamp\Apache24\conf，打开httpd.conf文件。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#查找 Define SRVROOT修改如下信息</span><br><span class="line">Define SRVROOT &quot;D:&#x2F;wamp&#x2F;Apache24&quot;</span><br></pre></td></tr></table></figure>
+<img src="http://upload-images.jianshu.io/upload_images/4830242-492d7cafc99e4bc3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+<li>进入D:\wamp\apache\bin 按住shift键点击鼠标右键，选择在此处打开命令窗口<br><img src="http://upload-images.jianshu.io/upload_images/4830242-ce00ea8174ed6847.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+<li>输入httpd -k install,把apache安装成windows后台服务。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">httpd -k install</span><br></pre></td></tr></table></figure>
+<img src="http://upload-images.jianshu.io/upload_images/4830242-69cf5f1ef66ea975.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><blockquote>
+<p><strong>错误问题，无错请跳过</strong><br>MSVCR110.dll下载地址<a href="http://www.microsoft.com/zh-CN/download/details.aspx?id=30679" target="_blank" rel="noopener">http://www.microsoft.com/zh-CN/download/details.aspx?id=30679</a><br><img src="http://upload-images.jianshu.io/upload_images/4830242-dd45942444e75e27.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+</blockquote>
+</li>
+</ol>
+<p><strong>如果出现其他补丁错误请自行下载win相应补丁</strong><br>4. 输入services.msc打开服务列表查看是否添加成功并启用apache</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">services.msc</span><br></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/4830242-4bf088d4ab245ebe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>5. 在浏览器中打开<a href="http://localhost" target="_blank" rel="noopener">http://localhost</a><br><img src="http://upload-images.jianshu.io/upload_images/4830242-87452bd73a7ef9e0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>6. Apache启动小工具<br>在D:\wamp\Apache24目录下新建一个文本粘贴如以下内容<em>(自己也可以修改注意路径)</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">cls </span><br><span class="line">@ECHO OFF </span><br><span class="line">SET Apache24_PATH&#x3D;D: </span><br><span class="line">SET Apache24_DIR&#x3D;D:\wamp\Apache24\bin</span><br><span class="line">color 0a </span><br><span class="line">TITLE Apache Management  </span><br><span class="line">GOTO MENU </span><br><span class="line">:MENU </span><br><span class="line">CLS </span><br><span class="line">ECHO. </span><br><span class="line">ECHO. * * * *  Apache Management  * * * * * * * * * * * </span><br><span class="line">ECHO. * * </span><br><span class="line">ECHO. * 1 启动Apache * </span><br><span class="line">ECHO. * * </span><br><span class="line">ECHO. * 2 关闭Apache * </span><br><span class="line">ECHO. * * </span><br><span class="line">ECHO. * 3 重启Apache * </span><br><span class="line">ECHO. * * </span><br><span class="line">ECHO. * 4 退 出 * </span><br><span class="line">ECHO. * * </span><br><span class="line">ECHO. * * * * * * * * * * * * * * * * * * * * * * * * </span><br><span class="line">ECHO. </span><br><span class="line">ECHO.请输入选择项目的序号： </span><br><span class="line">set &#x2F;p ID&#x3D; </span><br><span class="line">IF &quot;%id%&quot;&#x3D;&#x3D;&quot;1&quot; GOTO cmd1 </span><br><span class="line">IF &quot;%id%&quot;&#x3D;&#x3D;&quot;2&quot; GOTO cmd2 </span><br><span class="line">IF &quot;%id%&quot;&#x3D;&#x3D;&quot;3&quot; GOTO cmd3 </span><br><span class="line">IF &quot;%id%&quot;&#x3D;&#x3D;&quot;4&quot; EXIT </span><br><span class="line">PAUSE </span><br><span class="line">:cmd1 </span><br><span class="line">ECHO. </span><br><span class="line">ECHO.启动Apache...... </span><br><span class="line">cd %Mysql_DIR% </span><br><span class="line">net start Apache2.4</span><br><span class="line">PAUSE </span><br><span class="line">GOTO MENU </span><br><span class="line">:cmd2 </span><br><span class="line">ECHO. </span><br><span class="line">ECHO.关闭Apache...... </span><br><span class="line">cd %Mysql_DIR% </span><br><span class="line">net stop Apache2.4</span><br><span class="line">PAUSE </span><br><span class="line">GOTO MENU </span><br><span class="line">:cmd3 </span><br><span class="line">net stop Apache2.4</span><br><span class="line">net start Apache2.4 </span><br><span class="line">PAUSE </span><br><span class="line">GOTO MENU</span><br></pre></td></tr></table></figure>
+<p><strong>改名字为   Apache管理工具.bat   （后缀也要改），然后双击打开</strong><br><img src="http://upload-images.jianshu.io/upload_images/4830242-58f09411600acde0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h1 id="安装PHP"><a href="#安装PHP" class="headerlink" title="安装PHP"></a>安装PHP</h1><ol>
+<li>进入D:\wamp\php目录将php.ini-development复制一份改名为php.ini<br><img src="http://upload-images.jianshu.io/upload_images/4830242-bcbbb2989fe5a5e6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+<li>打开D:\wamp\Apache24\conf\httpd.conf文件。 在183行插入以下代码。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">LoadModule php5_module &quot;d:&#x2F;wamp&#x2F;php&#x2F;php5apache2_4.dll&quot;</span><br><span class="line">PHPIniDir &quot;d:&#x2F;wamp&#x2F;php&quot;</span><br><span class="line">AddType application&#x2F;x-httpd-php .php .phtml</span><br></pre></td></tr></table></figure>
+<img src="http://upload-images.jianshu.io/upload_images/4830242-673162c5f00cf3f6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>打开D:\wamp\php\php.ini文件 搜索extension_dir = “ext”，修为如下<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extension_dir &#x3D; &quot;d:&#x2F;wamp&#x2F;php&#x2F;ext&#x2F;&quot;</span><br></pre></td></tr></table></figure>
+<img src="http://upload-images.jianshu.io/upload_images/4830242-dc2b2ce9146449df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+<li>进入 D:\wamp\Apache24\htdocs 目录创建1.php文件写入以下内容<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">       phpinfo();</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure></li>
+<li>重启apache，浏览器里打开<a href="http://localhost/1.php" target="_blank" rel="noopener">http://localhost/1.php</a><br><img src="http://upload-images.jianshu.io/upload_images/4830242-b685970ed63dd174.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+</ol>
+<h1 id="安装Mysql"><a href="#安装Mysql" class="headerlink" title="安装Mysql"></a>安装Mysql</h1><ol>
+<li>进入D:\wamp\mysql，复制my-default.ini文件并改名为my.ini。<br>在D:\wamp\mysql目录下创建data文件夹，打开my.ini修改如下内容<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">basedir &#x3D; D:\wamp\mysql</span><br><span class="line">datadir &#x3D; D:\wamp\mysql\data</span><br><span class="line">port &#x3D; 3306</span><br></pre></td></tr></table></figure>
+<img src="http://upload-images.jianshu.io/upload_images/4830242-d384cc4bf813ec36.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+<li>进入D:\wamp\mysql\bin目录下按着shift键点右键， 在此打开命令窗口，（注意必须以管理员身份打开，否则报错。如果不是管理员请以管理员身份打开cmd并进入D:\wamp\mysql\bin目录）<br>输入以下命令初始化mysql<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld --initialize --user&#x3D;mysql --console</span><br></pre></td></tr></table></figure>
+<strong>记录下红色框内的初始密码（密码前面是没有空格的）</strong><br><img src="http://upload-images.jianshu.io/upload_images/4830242-1b01e55245c22dbe.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>将MySQL添加到系统服务<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqld --install MySQL</span><br></pre></td></tr></table></figure>
+<img src="http://upload-images.jianshu.io/upload_images/4830242-26ef216e91241eee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>启动myslq<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">net start mysql</span><br></pre></td></tr></table></figure>
+<img src="http://upload-images.jianshu.io/upload_images/4830242-0a257e62125e007e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+<li>进入myslq修改初始密码<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+更改密码<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set password for root@localhost &#x3D; password(&#39;123456&#39;); （注意分号）</span><br></pre></td></tr></table></figure>
+<img src="http://upload-images.jianshu.io/upload_images/4830242-414ee9eaa7a8b074.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+<li>创建其他用户<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE USER &#39;用户名&#39;@&#39;%&#39; IDENTIFIED BY &#39;密码&#39;;</span><br></pre></td></tr></table></figure>
+添加访问ip，%号代表所有IP都能访问<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRANT GRANT OPTION ON *.* TO &#39;账号&#39;@&#39;%&#39;;</span><br></pre></td></tr></table></figure>
+添加权限(所有权限)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, RELOAD, SHUTDOWN, PROCESS, FILE, REFERENCES, INDEX, ALTER, SHOW DATABASES, SUPER, CREATE TEMPORARY TABLES, LOCK TABLES, EXECUTE, REPLICATION SLAVE, REPLICATION CLIENT, CREATE VIEW, SHOW VIEW, CREATE ROUTINE, ALTER ROUTINE, CREATE USER, EVENT, TRIGGER ON *.* TO &#39;账号&#39;@&#39;%&#39;;</span><br></pre></td></tr></table></figure></li>
+<li>mysql 常用命令<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">net start mysql     #启动myslq服务</span><br><span class="line">net stop mysql      #停止mysql服务</span><br></pre></td></tr></table></figure>
+mysql管理小工具<br>在D:\wamp\mysql目录下新建一个文本粘贴如以下内容<em>(自己也可以修改注意路径)</em><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">cls </span><br><span class="line">@ECHO OFF </span><br><span class="line">SET Mysql_PATH&#x3D;D: </span><br><span class="line">SET Mysql_DIR&#x3D;D:\wamp\mysql\bin</span><br><span class="line">color 0a </span><br><span class="line">TITLE Mysql Management  </span><br><span class="line">GOTO MENU </span><br><span class="line">:MENU </span><br><span class="line">CLS </span><br><span class="line">ECHO. </span><br><span class="line">ECHO. * * * *  Mysql Management  * * * * * * * * * * * </span><br><span class="line">ECHO. * * </span><br><span class="line">ECHO. * 1 启动Mysql * </span><br><span class="line">ECHO. * * </span><br><span class="line">ECHO. * 2 关闭Mysql * </span><br><span class="line">ECHO. * * </span><br><span class="line">ECHO. * 3 重启Mysql * </span><br><span class="line">ECHO. * * </span><br><span class="line">ECHO. * 4 退 出 * </span><br><span class="line">ECHO. * * </span><br><span class="line">ECHO. * * * * * * * * * * * * * * * * * * * * * * * * </span><br><span class="line">ECHO. </span><br><span class="line">ECHO.请输入选择项目的序号： </span><br><span class="line">set &#x2F;p ID&#x3D; </span><br><span class="line">IF &quot;%id%&quot;&#x3D;&#x3D;&quot;1&quot; GOTO cmd1 </span><br><span class="line">IF &quot;%id%&quot;&#x3D;&#x3D;&quot;2&quot; GOTO cmd2 </span><br><span class="line">IF &quot;%id%&quot;&#x3D;&#x3D;&quot;3&quot; GOTO cmd3 </span><br><span class="line">IF &quot;%id%&quot;&#x3D;&#x3D;&quot;4&quot; EXIT </span><br><span class="line">PAUSE </span><br><span class="line">:cmd1 </span><br><span class="line">ECHO. </span><br><span class="line">ECHO.启动Mysql...... </span><br><span class="line">cd %Mysql_DIR% </span><br><span class="line">net start mysql</span><br><span class="line">PAUSE </span><br><span class="line">GOTO MENU </span><br><span class="line">:cmd2 </span><br><span class="line">ECHO. </span><br><span class="line">ECHO.关闭Mysql...... </span><br><span class="line">cd %Mysql_DIR% </span><br><span class="line">net stop mysql</span><br><span class="line">PAUSE </span><br><span class="line">GOTO MENU </span><br><span class="line">:cmd3 </span><br><span class="line">net stop mysql</span><br><span class="line">net start mysql </span><br><span class="line">PAUSE </span><br><span class="line">GOTO MENU</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>改名字为   Mysql管理工具.bat   （后缀也要改），然后双击打开(需要管理员权限)</strong><br><img src="http://upload-images.jianshu.io/upload_images/4830242-e16cc5edaaa055d1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h1 id="增加PHP扩展，以memcache为例（其他扩展大致相仿按需添加）"><a href="#增加PHP扩展，以memcache为例（其他扩展大致相仿按需添加）" class="headerlink" title="增加PHP扩展，以memcache为例（其他扩展大致相仿按需添加）"></a>增加PHP扩展，以memcache为例（其他扩展大致相仿按需添加）</h1><p>（如果是curl扩展需要将php中的libssh2.dll文件复制到apache的bin目录下）<br>php扩展官方地址<a href="http://pecl.php.net/" target="_blank" rel="noopener">http://pecl.php.net/</a></p>
+<ol>
+<li>下载memcache的DLL文件<em>(注意php版本)</em><br>解压后复制php_memcache.dll文件到D:\wamp\php\ext目录下<br><img src="http://upload-images.jianshu.io/upload_images/4830242-9a876439b6b23322.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+<li>打开D:\wamp\php\下php.ini文件，添加以下代码<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extension&#x3D;php_memcache.dll</span><br></pre></td></tr></table></figure>
+<img src="http://upload-images.jianshu.io/upload_images/4830242-e17183d60d1c5a02.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+<li>重启Apache2.4浏览器里打开<a href="http://localhost/1.php" target="_blank" rel="noopener">http://localhost/1.php</a><br><img src="http://upload-images.jianshu.io/upload_images/4830242-ab29c9b0f792e560.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+    
+    <div class="is_appreciation">
+        <a href="http://blogthuol.thuolm.com/appreciation.png?imageView2/2/w/600/q/80" target="_blank" title="请我喝杯咖啡吧(^_^)" class="fancybox" rel="article0 noopener">觉得不错，打赏一下(^_^)</a>
+    </div>
+    
+      <a data-url="https://blog.thuol.com/2017/03/01/20170301_Apache+Mysql+PHP(win%20sercer2012)/" data-id="ck8ym72wf000cikh8g7it4ym5" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/03/02/20170302_Nginx+php+MySql(win%20sercer2012)/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">
+        
+          Nginx+php+MySql(win sercer2012)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/02/24/20170224_%E6%B7%BB%E5%8A%A0%E6%9C%8D%E5%8A%A1%E5%88%B0%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E5%90%AF%E5%8A%A8%EF%BC%88centos7%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8nginx%EF%BC%8Cphp-fpm%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">添加服务到开机自动启动（centos7开机自启动nginx，php-fpm）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <div class="widget myinfo">
+        <div class="my_name">00天火00</div>
+        <div class="my_email">tianhuo@thuol.com</div>
+        <div class="my_logo"><img src="/logo.png" alt=""></div>
+        <div class="my_volume">
+            <div>
+                28<br />
+                文章数量
+            </div>
+            
+                <div>
+                    <span id="busuanzi_container_site_pv"><span id="busuanzi_value_site_pv"></span></span><br />
+                    总访问量
+                </div>
+                <div>
+                    <span id="busuanzi_container_site_uv"><span id="busuanzi_value_site_uv"></span></span><br />
+                    访客人数
+                </div>
+           
+
+        </div>
+        <hr>
+        <div class="my_name is_appreciation" onclick="is_appreciation()">打赏</div>
+        <div id='appreciation'>
+             <div class="appreciation">
+                <div>
+                <a href="http://blogthuol.thuolm.com/appreciation.png?imageView2/2/w/600/q/80" target="_blank" title="请我喝杯咖啡吧(^_^)" class="fancybox" rel="article0 noopener">
+                    <img src="http://blogthuol.thuolm.com/appreciation.png?imageView2/2/w/300/q/80" alt="打赏">
+                </a>
+                </div>
+             </div>
+             <div class="my_email">请我喝杯咖啡吧(^_^)</div>
+         </div>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/04/13/20200413_Docker%20Nginx%20php%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">Docker Nginx php开发环境</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/08/20200408_docker%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/">docker基本操作命令</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/22/20190822_%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89NPM%E6%9C%8D%E5%8A%A1%EF%BC%88cnpm%EF%BC%89/">搭建私有NPM服务（cnpm）</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/01/20170901_MAC%E8%AF%BB%E5%86%99NTFS%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%EF%BC%88%E5%8E%9F%E7%94%9F%E8%AF%BB%E5%86%99%EF%BC%8C%E4%B8%8D%E9%9C%80%E8%A6%81%E4%BB%BB%E4%BD%95%E8%BD%AF%E4%BB%B6%EF%BC%89/">MAC读写NTFS格式文件（原生读写，不需要任何软件）</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/01/20170901_Mac%20%E5%BC%80%E5%90%AF%E5%85%81%E8%AE%B8%E4%BB%BB%E4%BD%95%E6%9D%A5%E6%BA%90%E5%AE%89%E8%A3%85%E5%BA%94%E7%94%A8%EF%BC%88%E5%AE%89%E8%A3%85%E5%8C%85%E6%8D%9F%E5%9D%8F%E9%97%AE%E9%A2%98%EF%BC%89/">Mac 开启允许任何来源安装应用（安装包损坏问题）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MAC/">MAC</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a><span class="category-list-count">16</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux%E5%9F%BA%E7%A1%80/" rel="tag">linux基础</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/" rel="tag">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/" rel="tag">node</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">2020年04月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">2019年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      Copyright &copy; 2020-2020 00天火00<br>
+      技术支持：
+        <a href="https://hexo.io/zh-cn/" target="_blank">Hexo</a> |
+        <a href="https://github.com/" target="_blank">GitHub</a> |
+        <a href="https://www.qiniu.com/" target="_blank">七牛云</a> |
+        <a href="https://www.jianshu.com/" target="_blank">简书</a> |
+        <a href="http://busuanzi.ibruce.info/" target="_blank">不蒜子</a>|
+        <script type="text/javascript" src="https://s9.cnzz.com/z_stat.php?id=1278740016&web_id=1278740016"></script>
+        感谢他们提供相关技术
+
+    </div>
+  </div>
+
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">主页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/explain" class="mobile-nav-link">说明</a>
+  
+    <a href="/photo" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

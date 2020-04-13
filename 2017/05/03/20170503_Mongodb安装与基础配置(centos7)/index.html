@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Mongodb安装与基础配置(centos7) | 00天火00</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="referrer" content="no-referrer"/>
+
+  <meta name="description" content="说明本教程使用软件,使用默认端口，（需要开启27017端口）  mongodb-linux-x86_64-rhel70-3.4.4.tgzMongodb官网：https:&#x2F;&#x2F;www.mongodb.com&#x2F;下载地址：https:&#x2F;&#x2F;fastdl.mongodb.org&#x2F;linux&#x2F;mongodb-linux-x86_64-rhel70-3.4.4.tgz">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mongodb安装与基础配置(centos7)">
+<meta property="og:url" content="https://blog.thuol.com/2017/05/03/20170503_Mongodb%E5%AE%89%E8%A3%85%E4%B8%8E%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE(centos7)/index.html">
+<meta property="og:site_name" content="00天火00">
+<meta property="og:description" content="说明本教程使用软件,使用默认端口，（需要开启27017端口）  mongodb-linux-x86_64-rhel70-3.4.4.tgzMongodb官网：https:&#x2F;&#x2F;www.mongodb.com&#x2F;下载地址：https:&#x2F;&#x2F;fastdl.mongodb.org&#x2F;linux&#x2F;mongodb-linux-x86_64-rhel70-3.4.4.tgz">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-a2fd54fd3cfe822c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-25436223f84d5ab7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-586a746042ed2bab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-e30a98ba6ace6e31.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-794610bc119f1678.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-aec9d752c7dfaac3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-2cd0e344084f065a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-ac571fd7d6964697.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-6a80d65f9a531866.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-18827b24870ade18.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="article:published_time" content="2017-05-03T13:05:00.000Z">
+<meta property="article:modified_time" content="2020-04-13T14:51:42.248Z">
+<meta property="article:author" content="00天火00">
+<meta property="article:tag" content="mongodb">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/4830242-a2fd54fd3cfe822c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+  <script async src="/busuanzi.pure.mini.js?123"></script>
+  <script async src="/thuol.js?12"></script>
+  <link href="/thuol.css" rel="stylesheet">
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">00天火00</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">人生不相见,动如参与商</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">主页</a>
+        
+          <a class="main-nav-link" href="/archives">文章</a>
+        
+          <a class="main-nav-link" href="/explain">说明</a>
+        
+          <a class="main-nav-link" href="/photo">摄影</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.thuol.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-20170503_Mongodb安装与基础配置(centos7)" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+
+    
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+
+<a href="/2017/05/03/20170503_Mongodb%E5%AE%89%E8%A3%85%E4%B8%8E%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE(centos7)/" class="article-date">
+  <time datetime="2017-05-03T13:05:00.000Z" itemprop="datePublished">2017-05-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Mongodb安装与基础配置(centos7)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>本教程使用软件,使用默认端口，（需要开启27017端口）</p>
+<blockquote>
+<p>mongodb-linux-x86_64-rhel70-3.4.4.tgz<br>Mongodb官网：<a href="https://www.mongodb.com/" target="_blank" rel="noopener">https://www.mongodb.com/</a><br>下载地址：<a href="https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-3.4.4.tgz" target="_blank" rel="noopener">https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-rhel70-3.4.4.tgz</a></p>
+</blockquote>
+<a id="more"></a>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>创建数据目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p &#x2F;data&#x2F;db</span><br><span class="line">chmod -R 777 &#x2F;data</span><br></pre></td></tr></table></figure>
+
+<p>下载mogodb到自己喜欢的目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https:&#x2F;&#x2F;fastdl.mongodb.org&#x2F;linux&#x2F;mongodb-linux-x86_64-rhel70-3.4.4.tgz</span><br></pre></td></tr></table></figure>
+
+<p>解压并进入bin目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf mongodb-linux-x86_64-rhel70-3.4.4.tgz</span><br><span class="line">cd mongodb-linux-x86_64-rhel70-3.4.4&#x2F;</span><br><span class="line">cd bin</span><br></pre></td></tr></table></figure>
+<p>启动Mongodb</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;mongod</span><br></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/4830242-a2fd54fd3cfe822c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>测试<br>这个时候发现不是后台启动（不能关闭），<strong>可以另外开启一个ssh进行测试。</strong><br>打开mongo（和上一个命令不一样，没有最后面的d）进入MongoDB后台管理 Shell</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;mongo</span><br></pre></td></tr></table></figure>
+<p><img src="http://upload-images.jianshu.io/upload_images/4830242-25436223f84d5ab7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<h1 id="带参数后台启动Mongodb"><a href="#带参数后台启动Mongodb" class="headerlink" title="带参数后台启动Mongodb"></a>带参数后台启动Mongodb</h1><ol>
+<li>配置文件方式启动mongo<br>创建配置文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi mongodb.cnf</span><br></pre></td></tr></table></figure>
+输入以下内容<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dbpath&#x3D;&#x2F;data&#x2F;db&#x2F;                   </span><br><span class="line">logpath&#x3D;&#x2F;data&#x2F;db&#x2F;mongo.log</span><br><span class="line">logappend&#x3D;true</span><br><span class="line">fork&#x3D;true</span><br><span class="line">port&#x3D;27017</span><br></pre></td></tr></table></figure>
+启动<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;mongod -f .&#x2F;mongodb.cnf</span><br></pre></td></tr></table></figure></li>
+<li>不创建配置文件通过mongod参数启动也可以<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;mongod -dbpath &#x2F;data&#x2F;db&#x2F; -logpath &#x2F;data&#x2F;db&#x2F;mongo.log -logappend -fork -port 27017</span><br></pre></td></tr></table></figure></li>
+<li>参数说明（参考使用）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">--quiet	# 安静输出</span><br><span class="line">--port arg	# 指定服务端口号，默认端口27017</span><br><span class="line">--bind_ip arg	# 绑定服务IP，若绑定127.0.0.1，则只能本机访问，不指定默认本地所有IP</span><br><span class="line">--logpath arg	# 指定MongoDB日志文件，注意是指定文件不是目录</span><br><span class="line">--logappend	# 使用追加的方式写日志</span><br><span class="line">--pidfilepath arg	# PID File 的完整路径，如果没有设置，则没有PID文件</span><br><span class="line">--keyFile arg	# 集群的私钥的完整路径，只对于Replica Set 架构有效</span><br><span class="line">--unixSocketPrefix arg	# UNIX域套接字替代目录,(默认为 &#x2F;tmp)</span><br><span class="line">--fork	# 以守护进程的方式运行MongoDB，创建服务器进程</span><br><span class="line">--auth	# 启用验证</span><br><span class="line">--cpu	# 定期显示CPU的CPU利用率和iowait</span><br><span class="line">--dbpath arg	# 指定数据库路径</span><br><span class="line">--diaglog arg	# diaglog选项 0&#x3D;off 1&#x3D;W 2&#x3D;R 3&#x3D;both 7&#x3D;W+some reads</span><br><span class="line">--directoryperdb	# 设置每个数据库将被保存在一个单独的目录</span><br><span class="line">--journal	# 启用日志选项，MongoDB的数据操作将会写入到journal文件夹的文件里</span><br><span class="line">--journalOptions arg	# 启用日志诊断选项</span><br><span class="line">--ipv6	# 启用IPv6选项</span><br><span class="line">--jsonp	# 允许JSONP形式通过HTTP访问（有安全影响）</span><br><span class="line">--maxConns arg	# 最大同时连接数 默认2000</span><br><span class="line">--noauth	# 不启用验证</span><br><span class="line">--nohttpinterface	# 关闭http接口，默认关闭27018端口访问</span><br><span class="line">--noprealloc	# 禁用数据文件预分配(往往影响性能)</span><br><span class="line">--noscripting	# 禁用脚本引擎</span><br><span class="line">--notablescan	# 不允许表扫描</span><br><span class="line">--nounixsocket	# 禁用Unix套接字监听</span><br><span class="line">--nssize arg (&#x3D;16)	# 设置信数据库.ns文件大小(MB)</span><br><span class="line">--objcheck	# 在收到客户数据,检查的有效性，</span><br><span class="line">--profile arg	# 档案参数 0&#x3D;off 1&#x3D;slow, 2&#x3D;all</span><br><span class="line">--quota	# 限制每个数据库的文件数，设置默认为8</span><br><span class="line">--quotaFiles arg	# number of files allower per db, requires --quota</span><br><span class="line">--rest	# 开启简单的rest API</span><br><span class="line">--repair	# 修复所有数据库run repair on all dbs</span><br><span class="line">--repairpath arg	# 修复库生成的文件的目录,默认为目录名称dbpath</span><br><span class="line">--slowms arg (&#x3D;100)	# value of slow for profile and console log</span><br><span class="line">--smallfiles	# 使用较小的默认文件</span><br><span class="line">--syncdelay arg (&#x3D;60)	# 数据写入磁盘的时间秒数(0&#x3D;never,不推荐)</span><br><span class="line">--sysinfo	# 打印一些诊断系统信息</span><br><span class="line">--upgrade	# 如果需要升级数据库</span><br></pre></td></tr></table></figure>
+Replicaton 参数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">--fastsync	# 从一个dbpath里启用从库复制服务，该dbpath的数据库是主库的快照，可用于快速启用同步</span><br><span class="line">--autoresync	# 如果从库与主库同步数据差得多，自动重新同步，</span><br><span class="line">--oplogSize arg	# 设置oplog的大小(MB)</span><br></pre></td></tr></table></figure>
+主/从参数<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">--master	# 主库模式</span><br><span class="line">--slave	# 从库模式</span><br><span class="line">--source arg	# 从库 端口号</span><br><span class="line">--only arg	# 指定单一的数据库复制</span><br><span class="line">--slavedelay arg	# 设置从库同步主库的延迟时间</span><br></pre></td></tr></table></figure>
+Replica set(副本集)选项：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">--replSet arg	# 设置副本集名称</span><br></pre></td></tr></table></figure>
+Sharding(分片)选项<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">--configsvr	# 声明这是一个集群的config服务,默认端口27019，默认目录&#x2F;data&#x2F;configdb</span><br><span class="line">--shardsvr	# 声明这是一个集群的分片,默认端口27018</span><br><span class="line">--noMoveParanoia	# 关闭偏执为moveChunk数据保存</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<h1 id="给数据库创建密码"><a href="#给数据库创建密码" class="headerlink" title="给数据库创建密码"></a>给数据库创建密码</h1><ol>
+<li>进入客户端<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;mongo</span><br></pre></td></tr></table></figure>
+<img src="http://upload-images.jianshu.io/upload_images/4830242-586a746042ed2bab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+<li>进入想要加密码的数据库（本文以tesataa数据库为例）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use tesataa</span><br></pre></td></tr></table></figure>
+<img src="http://upload-images.jianshu.io/upload_images/4830242-e30a98ba6ace6e31.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+<li>为单个数据库添加用户（用户名为useraa,密码为123456）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.createUser(&#123;user:&quot;useraa&quot;,pwd:&quot;123456&quot;,roles:[&#123;role:&quot;dbOwner&quot;,db:&quot;tesataa&quot;&#125;]&#125;)</span><br></pre></td></tr></table></figure>
+<img src="http://upload-images.jianshu.io/upload_images/4830242-794610bc119f1678.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+</ol>
+<p><strong>db.createUser()参数说明</strong> <em>(作为配置参考)</em><br><a href="https://docs.mongodb.com/manual/reference/method/db.createUser/" target="_blank" rel="noopener">官方文档地址：https://docs.mongodb.com/manual/reference/method/db.createUser/</a><br>格式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123; </span><br><span class="line">      user: &quot;&lt;name&gt;&quot;,</span><br><span class="line">      pwd: &quot;&lt;cleartext password&gt;&quot;,</span><br><span class="line">      customData: &#123; &lt;any information&gt; &#125;,</span><br><span class="line">      roles: [</span><br><span class="line">        &#123; role: &quot;&lt;role&gt;&quot;, db: &quot;&lt;database&gt;&quot; &#125; | &quot;&lt;role&gt;&quot;,</span><br><span class="line">      ...</span><br><span class="line">      ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>user文档字段介绍：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">user字段，为新用户的名字；   </span><br><span class="line">pwd字段，用户的密码；    </span><br><span class="line">cusomData字段，为任意内容，例如可以为用户全名介绍；    </span><br><span class="line">roles字段，指定用户的角色，可以用一个空数组给新用户设定空角色；    </span><br><span class="line">在roles字段,可以指定内置角色和用户定义的角色。</span><br></pre></td></tr></table></figure>
+<p>Built-In Roles（<a href="http://docs.mongodb.org/manual/reference/built-in-roles/#built-in-roles" target="_blank" rel="noopener">内置角色</a>）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1.数据库用户角色：read、readWrite; </span><br><span class="line">2.数据库管理角色：dbAdmin、dbOwner、userAdmin；    </span><br><span class="line">3.集群管理角色：clusterAdmin、clusterManager、clusterMonitor、hostManager；</span><br><span class="line">4.备份恢复角色：backup、restore；</span><br><span class="line">5.所有数据库角色：readAnyDatabase、readWriteAnyDatabase、userAdminAnyDatabase、dbAdminAnyDatabase</span><br><span class="line">6.超级用户角色：root    &#x2F;&#x2F; 这里还有几个角色间接或直接提供了系统超级用户的访问（dbOwner 、userAdmin、userAdminAnyDatabase）</span><br><span class="line">7.内部角色：__system   &#x2F;&#x2F;关于每个角色所拥有的操作权限可以点击上面的内置角色链接查看详情。</span><br></pre></td></tr></table></figure>
+<p>writeConcern文档（<a href="http://docs.mongodb.org/manual/reference/write-concern/" target="_blank" rel="noopener">官方说明</a>）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">w选项：允许的值分别是 1、0、大于1的值、&quot;majority&quot;、&lt;tag set&gt;；  </span><br><span class="line">j选项：确保mongod实例写数据到磁盘上的journal（日志），这可以确保mongd以外关闭不会丢失数据。设置true启用。    </span><br><span class="line">wtimeout：指定一个时间限制,以毫秒为单位。wtimeout只适用于w值大于1。</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>关闭mongodb 并带认证重启mongodb（本次使用非配置文件启动，自己可写入配置文件里）<br>查看进程并使用kill 结束和mongodb有关的进程<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -antpl</span><br></pre></td></tr></table></figure>
+带认证的启动mongodb(-auth 开启密码认证)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;mongod -dbpath &#x2F;data&#x2F;db&#x2F; -logpath &#x2F;data&#x2F;db&#x2F;mongo.log -logappend -fork -port 27017 -auth</span><br></pre></td></tr></table></figure>
+测试（我之前就在tesataa数据库里面加了一个col集合并添加了一条数据，mongodb增，删，改，查等操作命令本文不做具体解释）<br>使用密码登录<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.auth(&quot;useraa&quot;,&quot;123456&quot;)</span><br></pre></td></tr></table></figure>
+<img src="http://upload-images.jianshu.io/upload_images/4830242-aec9d752c7dfaac3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></li>
+</ol>
+<h1 id="使用mongodb管理工具（Robomong）"><a href="#使用mongodb管理工具（Robomong）" class="headerlink" title="使用mongodb管理工具（Robomong）"></a>使用mongodb管理工具（Robomong）</h1><p><img src="http://upload-images.jianshu.io/upload_images/4830242-2cd0e344084f065a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br><img src="http://upload-images.jianshu.io/upload_images/4830242-ac571fd7d6964697.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br><img src="http://upload-images.jianshu.io/upload_images/4830242-6a80d65f9a531866.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br><img src="http://upload-images.jianshu.io/upload_images/4830242-18827b24870ade18.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+    
+    <div class="is_appreciation">
+        <a href="http://blogthuol.thuolm.com/appreciation.png?imageView2/2/w/600/q/80" target="_blank" title="请我喝杯咖啡吧(^_^)" class="fancybox" rel="article0 noopener">觉得不错，打赏一下(^_^)</a>
+    </div>
+    
+      <a data-url="https://blog.thuol.com/2017/05/03/20170503_Mongodb%E5%AE%89%E8%A3%85%E4%B8%8E%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE(centos7)/" data-id="ck8ym72wx001mikh8cb3tf063" class="article-share-link">分享</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mongodb/" rel="tag">mongodb</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/09/01/20170901_Mac%20%E2%80%9C%E6%B0%B8%E4%B9%85%E2%80%9D%20%E9%9A%90%E8%97%8FDock/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">
+        
+          Mac “永久” 隐藏Dock
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/02/20170502_Node.js%20%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%EF%BC%88centos7%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">Node.js 安装配置（centos7）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <div class="widget myinfo">
+        <div class="my_name">00天火00</div>
+        <div class="my_email">tianhuo@thuol.com</div>
+        <div class="my_logo"><img src="/logo.png" alt=""></div>
+        <div class="my_volume">
+            <div>
+                28<br />
+                文章数量
+            </div>
+            
+                <div>
+                    <span id="busuanzi_container_site_pv"><span id="busuanzi_value_site_pv"></span></span><br />
+                    总访问量
+                </div>
+                <div>
+                    <span id="busuanzi_container_site_uv"><span id="busuanzi_value_site_uv"></span></span><br />
+                    访客人数
+                </div>
+           
+
+        </div>
+        <hr>
+        <div class="my_name is_appreciation" onclick="is_appreciation()">打赏</div>
+        <div id='appreciation'>
+             <div class="appreciation">
+                <div>
+                <a href="http://blogthuol.thuolm.com/appreciation.png?imageView2/2/w/600/q/80" target="_blank" title="请我喝杯咖啡吧(^_^)" class="fancybox" rel="article0 noopener">
+                    <img src="http://blogthuol.thuolm.com/appreciation.png?imageView2/2/w/300/q/80" alt="打赏">
+                </a>
+                </div>
+             </div>
+             <div class="my_email">请我喝杯咖啡吧(^_^)</div>
+         </div>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/04/13/20200413_Docker%20Nginx%20php%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">Docker Nginx php开发环境</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/08/20200408_docker%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/">docker基本操作命令</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/22/20190822_%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89NPM%E6%9C%8D%E5%8A%A1%EF%BC%88cnpm%EF%BC%89/">搭建私有NPM服务（cnpm）</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/01/20170901_MAC%E8%AF%BB%E5%86%99NTFS%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%EF%BC%88%E5%8E%9F%E7%94%9F%E8%AF%BB%E5%86%99%EF%BC%8C%E4%B8%8D%E9%9C%80%E8%A6%81%E4%BB%BB%E4%BD%95%E8%BD%AF%E4%BB%B6%EF%BC%89/">MAC读写NTFS格式文件（原生读写，不需要任何软件）</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/01/20170901_Mac%20%E5%BC%80%E5%90%AF%E5%85%81%E8%AE%B8%E4%BB%BB%E4%BD%95%E6%9D%A5%E6%BA%90%E5%AE%89%E8%A3%85%E5%BA%94%E7%94%A8%EF%BC%88%E5%AE%89%E8%A3%85%E5%8C%85%E6%8D%9F%E5%9D%8F%E9%97%AE%E9%A2%98%EF%BC%89/">Mac 开启允许任何来源安装应用（安装包损坏问题）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MAC/">MAC</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a><span class="category-list-count">16</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux%E5%9F%BA%E7%A1%80/" rel="tag">linux基础</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/" rel="tag">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/" rel="tag">node</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">2020年04月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">2019年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      Copyright &copy; 2020-2020 00天火00<br>
+      技术支持：
+        <a href="https://hexo.io/zh-cn/" target="_blank">Hexo</a> |
+        <a href="https://github.com/" target="_blank">GitHub</a> |
+        <a href="https://www.qiniu.com/" target="_blank">七牛云</a> |
+        <a href="https://www.jianshu.com/" target="_blank">简书</a> |
+        <a href="http://busuanzi.ibruce.info/" target="_blank">不蒜子</a>|
+        <script type="text/javascript" src="https://s9.cnzz.com/z_stat.php?id=1278740016&web_id=1278740016"></script>
+        感谢他们提供相关技术
+
+    </div>
+  </div>
+
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">主页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/explain" class="mobile-nav-link">说明</a>
+  
+    <a href="/photo" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>websocket-php简易聊天（保持网页数据通讯） | 00天火00</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="referrer" content="no-referrer"/>
+
+  <meta name="description" content="说明需要安装 swoole扩展在linux系统下通过命令行执行php文件。（win下没有swoole扩展）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="websocket-php简易聊天（保持网页数据通讯）">
+<meta property="og:url" content="https://blog.thuol.com/2017/04/24/20170424_websocket-php%E7%AE%80%E6%98%93%E8%81%8A%E5%A4%A9%EF%BC%88%E4%BF%9D%E6%8C%81%E7%BD%91%E9%A1%B5%E6%95%B0%E6%8D%AE%E9%80%9A%E8%AE%AF%EF%BC%89/index.html">
+<meta property="og:site_name" content="00天火00">
+<meta property="og:description" content="说明需要安装 swoole扩展在linux系统下通过命令行执行php文件。（win下没有swoole扩展）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-5ad44d456f1977c6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-b4926f092d95bf11.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-40a8b66f58467e60.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-2f32fe70a705f593.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/4830242-7e919731ec7c2efd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="article:published_time" content="2017-04-24T08:36:00.000Z">
+<meta property="article:modified_time" content="2020-04-13T14:51:42.247Z">
+<meta property="article:author" content="00天火00">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/4830242-5ad44d456f1977c6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  <script src="https://cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+  <script async src="/busuanzi.pure.mini.js?123"></script>
+  <script async src="/thuol.js?12"></script>
+  <link href="/thuol.css" rel="stylesheet">
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">00天火00</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">人生不相见,动如参与商</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">主页</a>
+        
+          <a class="main-nav-link" href="/archives">文章</a>
+        
+          <a class="main-nav-link" href="/explain">说明</a>
+        
+          <a class="main-nav-link" href="/photo">摄影</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://blog.thuol.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-20170424_websocket-php简易聊天（保持网页数据通讯）" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+
+    
+        <!-- 不蒜子统计 -->
+        <span id="busuanzi_container_page_pv" style='display:none' class="article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+
+<a href="/2017/04/24/20170424_websocket-php%E7%AE%80%E6%98%93%E8%81%8A%E5%A4%A9%EF%BC%88%E4%BF%9D%E6%8C%81%E7%BD%91%E9%A1%B5%E6%95%B0%E6%8D%AE%E9%80%9A%E8%AE%AF%EF%BC%89/" class="article-date">
+  <time datetime="2017-04-24T08:36:00.000Z" itemprop="datePublished">2017-04-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/PHP/">PHP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      websocket-php简易聊天（保持网页数据通讯）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>需要安装 swoole扩展<br><img src="http://upload-images.jianshu.io/upload_images/4830242-5ad44d456f1977c6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""><br>在linux系统下通过命令行执行php文件。（win下没有swoole扩展）</p>
+<a id="more"></a>
+<h1 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h1><h4 id="1-前端websocket"><a href="#1-前端websocket" class="headerlink" title="1. 前端websocket"></a>1. 前端websocket</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">﻿</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;title&gt;Web sockets test&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;script type&#x3D;&quot;text&#x2F;javascript&quot;&gt;</span><br><span class="line">        var ws;</span><br><span class="line">        function ToggleConnectionClicked() &#123;   </span><br><span class="line">            if( typeof(ws) !&#x3D; &#39;undefined&#39; &amp;&amp; ws.readyState &#x3D;&#x3D; 1 ) &#123;</span><br><span class="line">                alert(&#39;已连接服务器，请勿重复连接！&#39;);</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            try &#123;</span><br><span class="line">                ws &#x3D; new WebSocket(&quot;ws:&#x2F;&#x2F;192.168.198.221:9501&quot;);&#x2F;&#x2F;连接服务器,改成你服务器地址</span><br><span class="line">                ws.onopen &#x3D; function(event)&#123;</span><br><span class="line">                    alert(&quot;已经与服务器建立了连接\r\n当前连接状态：&quot;+this.readyState);</span><br><span class="line">                &#125;;</span><br><span class="line">                ws.onmessage &#x3D; function(event)&#123;</span><br><span class="line">                    &#x2F;&#x2F; alert(&quot;接收到服务器发送的数据：\r\n&quot;+event.data);</span><br><span class="line">                    var chat_content &#x3D; document.getElementById(&quot;chat_content&quot;);</span><br><span class="line">                    chat_content.innerHTML &#x3D; chat_content.innerHTML+event.data+&quot;&lt;br &#x2F;&gt;&quot;;</span><br><span class="line">                    &#x2F;&#x2F; console.log(event.data);</span><br><span class="line">                &#125;;</span><br><span class="line">                ws.onclose &#x3D; function(event)&#123;</span><br><span class="line">                    alert(&quot;已经与服务器断开连接\r\n当前连接状态：&quot;+this.readyState);</span><br><span class="line">                &#125;;</span><br><span class="line">                ws.onerror &#x3D; function(event)&#123;</span><br><span class="line">                    alert(&quot;WebSocket异常！&quot;);</span><br><span class="line">                &#125;;</span><br><span class="line">            &#125; catch (ex) &#123;</span><br><span class="line">                alert(ex.message);      </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"> </span><br><span class="line">        function SendData() &#123;</span><br><span class="line">            try&#123;</span><br><span class="line">                var content &#x3D; document.getElementById(&quot;content&quot;).value;</span><br><span class="line">                if(content)&#123;</span><br><span class="line">                    ws.send(content);</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">            &#125;catch(ex)&#123;</span><br><span class="line">                alert(ex.message);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line"> </span><br><span class="line">        function seestate()&#123;</span><br><span class="line">            if( typeof(ws) &#x3D;&#x3D; &#39;undefined&#39; ) &#123;</span><br><span class="line">                alert(&#39;还未连接服务器！&#39;);</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            alert(ws.readyState);</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        function ClearChatContent()&#123;</span><br><span class="line">            document.getElementById(&quot;chat_content&quot;).innerHTML &#x3D; &quot;&quot;;</span><br><span class="line">        &#125;;</span><br><span class="line">    &lt;&#x2F;script&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;button id&#x3D;&#39;ToggleConnection&#39; type&#x3D;&quot;button&quot; onclick&#x3D;&#39;ToggleConnectionClicked();&#39;&gt;连接服务器&lt;&#x2F;button&gt;&lt;br &#x2F;&gt;&lt;br &#x2F;&gt;</span><br><span class="line">    &lt;textarea id&#x3D;&quot;content&quot; &gt;&lt;&#x2F;textarea&gt;</span><br><span class="line">    &lt;button id&#x3D;&#39;ToggleConnection&#39; type&#x3D;&quot;button&quot; onclick&#x3D;&#39;SendData();&#39;&gt;发送&lt;&#x2F;button&gt;&lt;br &#x2F;&gt;&lt;br &#x2F;&gt;</span><br><span class="line">    &lt;button id&#x3D;&#39;ToggleConnection&#39; type&#x3D;&quot;button&quot; onclick&#x3D;&#39;seestate();&#39;&gt;查看状态&lt;&#x2F;button&gt;&lt;br &#x2F;&gt;&lt;br &#x2F;&gt;</span><br><span class="line">    &lt;button type&#x3D;&quot;button&quot; onclick&#x3D;&#39;ClearChatContent();&#39;&gt;清屏&lt;&#x2F;button&gt;&lt;br &#x2F;&gt;&lt;br &#x2F;&gt;</span><br><span class="line">    &lt;div id&#x3D;&quot;chat_content&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-后台php代码"><a href="#2-后台php代码" class="headerlink" title="2. 后台php代码"></a>2. 后台php代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">﻿&lt;?php</span><br><span class="line"># 创建websocket服务器对象，监听0.0.0.0:9502端口</span><br><span class="line">$ws &#x3D; new swoole_websocket_server(&quot;0.0.0.0&quot;, 9501);</span><br><span class="line"> </span><br><span class="line"># 监听WebSocket连接打开事件</span><br><span class="line">$ws-&gt;on(&#39;open&#39;, function ($ws, $request) &#123;</span><br><span class="line">    &#x2F;&#x2F; var_dump($request-&gt;fd, $request-&gt;get, $request-&gt;server);</span><br><span class="line">    echo $request-&gt;server[&#39;remote_addr&#39;].&quot;已连接\n&quot;;</span><br><span class="line">    $ws-&gt;push($request-&gt;fd, &quot;hello, welcome.your ip is &#123;$request-&gt;server[&#39;remote_addr&#39;]&#125;\n&quot;);</span><br><span class="line"> </span><br><span class="line">    # 广播</span><br><span class="line">    foreach($ws-&gt;connections as $fd) &#123;</span><br><span class="line">        $ws-&gt;push($fd, &quot;用户&#123;$request-&gt;fd&#125;已登录聊天&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line"># 监听WebSocket消息事件</span><br><span class="line">$ws-&gt;on(&#39;message&#39;, function (swoole_websocket_server $server, $frame) &#123;</span><br><span class="line">    echo $frame-&gt;fd.&quot; Message: &#123;$frame-&gt;data&#125;\n&quot;;</span><br><span class="line">    # 广播</span><br><span class="line">    foreach($server-&gt;connections as $fd) &#123;</span><br><span class="line">        $server-&gt;push($fd, &quot;用户&#123;$frame-&gt;fd&#125;说: &#123;$frame-&gt;data&#125;&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line"># 监听WebSocket连接关闭事件</span><br><span class="line">$ws-&gt;on(&#39;close&#39;, function ($ws, $fd) &#123;</span><br><span class="line">    # var_dump($ws, $fd);</span><br><span class="line">    echo &quot;client-&#123;$fd&#125; is closed\n&quot;;</span><br><span class="line">&#125;);</span><br><span class="line"> </span><br><span class="line">$ws-&gt;start();</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-通过命令行进行启动php"><a href="#3-通过命令行进行启动php" class="headerlink" title="3. 通过命令行进行启动php"></a>3. 通过命令行进行启动php</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;php &#x2F;www&#x2F;wwwroot&#x2F;a&#x2F;testa.php</span><br></pre></td></tr></table></figure>
+<h4 id="4-测试"><a href="#4-测试" class="headerlink" title="4.测试"></a>4.测试</h4><p> 分别通过两个不同的浏览器打开前端H5页面（本人使用火狐浏览器和360浏览器），并连接服务器</p>
+<p>火狐浏览器<br><img src="http://upload-images.jianshu.io/upload_images/4830242-b4926f092d95bf11.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>360浏览器<br><img src="http://upload-images.jianshu.io/upload_images/4830242-40a8b66f58467e60.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>发送信息<br><img src="http://upload-images.jianshu.io/upload_images/4830242-2f32fe70a705f593.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<p>后台显示<br><img src="http://upload-images.jianshu.io/upload_images/4830242-7e919731ec7c2efd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+    
+    <div class="is_appreciation">
+        <a href="http://blogthuol.thuolm.com/appreciation.png?imageView2/2/w/600/q/80" target="_blank" title="请我喝杯咖啡吧(^_^)" class="fancybox" rel="article0 noopener">觉得不错，打赏一下(^_^)</a>
+    </div>
+    
+      <a data-url="https://blog.thuol.com/2017/04/24/20170424_websocket-php%E7%AE%80%E6%98%93%E8%81%8A%E5%A4%A9%EF%BC%88%E4%BF%9D%E6%8C%81%E7%BD%91%E9%A1%B5%E6%95%B0%E6%8D%AE%E9%80%9A%E8%AE%AF%EF%BC%89/" data-id="ck8ym72wu001cikh84oykdyob" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/04/27/20170427_centos7%E4%B8%8B%E6%BA%90%E7%A0%81%E5%AE%89%E8%A3%85Redis/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">
+        
+          centos7下源码安装Redis
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/04/06/20170406_centos7%E4%BF%AE%E6%94%B9%E7%B3%BB%E7%BB%9F%E8%AF%AD%E8%A8%80%E4%B8%BA%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">centos7修改系统语言为简体中文</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <div class="widget myinfo">
+        <div class="my_name">00天火00</div>
+        <div class="my_email">tianhuo@thuol.com</div>
+        <div class="my_logo"><img src="/logo.png" alt=""></div>
+        <div class="my_volume">
+            <div>
+                28<br />
+                文章数量
+            </div>
+            
+                <div>
+                    <span id="busuanzi_container_site_pv"><span id="busuanzi_value_site_pv"></span></span><br />
+                    总访问量
+                </div>
+                <div>
+                    <span id="busuanzi_container_site_uv"><span id="busuanzi_value_site_uv"></span></span><br />
+                    访客人数
+                </div>
+           
+
+        </div>
+        <hr>
+        <div class="my_name is_appreciation" onclick="is_appreciation()">打赏</div>
+        <div id='appreciation'>
+             <div class="appreciation">
+                <div>
+                <a href="http://blogthuol.thuolm.com/appreciation.png?imageView2/2/w/600/q/80" target="_blank" title="请我喝杯咖啡吧(^_^)" class="fancybox" rel="article0 noopener">
+                    <img src="http://blogthuol.thuolm.com/appreciation.png?imageView2/2/w/300/q/80" alt="打赏">
+                </a>
+                </div>
+             </div>
+             <div class="my_email">请我喝杯咖啡吧(^_^)</div>
+         </div>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/04/13/20200413_Docker%20Nginx%20php%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">Docker Nginx php开发环境</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/08/20200408_docker%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4/">docker基本操作命令</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/22/20190822_%E6%90%AD%E5%BB%BA%E7%A7%81%E6%9C%89NPM%E6%9C%8D%E5%8A%A1%EF%BC%88cnpm%EF%BC%89/">搭建私有NPM服务（cnpm）</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/01/20170901_MAC%E8%AF%BB%E5%86%99NTFS%E6%A0%BC%E5%BC%8F%E6%96%87%E4%BB%B6%EF%BC%88%E5%8E%9F%E7%94%9F%E8%AF%BB%E5%86%99%EF%BC%8C%E4%B8%8D%E9%9C%80%E8%A6%81%E4%BB%BB%E4%BD%95%E8%BD%AF%E4%BB%B6%EF%BC%89/">MAC读写NTFS格式文件（原生读写，不需要任何软件）</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/01/20170901_Mac%20%E5%BC%80%E5%90%AF%E5%85%81%E8%AE%B8%E4%BB%BB%E4%BD%95%E6%9D%A5%E6%BA%90%E5%AE%89%E8%A3%85%E5%BA%94%E7%94%A8%EF%BC%88%E5%AE%89%E8%A3%85%E5%8C%85%E6%8D%9F%E5%9D%8F%E9%97%AE%E9%A2%98%EF%BC%89/">Mac 开启允许任何来源安装应用（安装包损坏问题）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Docker/">Docker</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MAC/">MAC</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a><span class="category-list-count">16</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Nginx/" rel="tag">Nginx</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux%E5%9F%BA%E7%A1%80/" rel="tag">linux基础</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mongodb/" rel="tag">mongodb</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/" rel="tag">node</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a><span class="tag-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">2020年04月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">2019年08月</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">2017年09月</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">2017年05月</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">2017年04月</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">2017年03月</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">2017年02月</a><span class="archive-list-count">4</span></li></ul>
+    </div>
+  </div>
+
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      Copyright &copy; 2020-2020 00天火00<br>
+      技术支持：
+        <a href="https://hexo.io/zh-cn/" target="_blank">Hexo</a> |
+        <a href="https://github.com/" target="_blank">GitHub</a> |
+        <a href="https://www.qiniu.com/" target="_blank">七牛云</a> |
+        <a href="https://www.jianshu.com/" target="_blank">简书</a> |
+        <a href="http://busuanzi.ibruce.info/" target="_blank">不蒜子</a>|
+        <script type="text/javascript" src="https://s9.cnzz.com/z_stat.php?id=1278740016&web_id=1278740016"></script>
+        感谢他们提供相关技术
+
+    </div>
+  </div>
+
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">主页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/explain" class="mobile-nav-link">说明</a>
+  
+    <a href="/photo" class="mobile-nav-link">摄影</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
